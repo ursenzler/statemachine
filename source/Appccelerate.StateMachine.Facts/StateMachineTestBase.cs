@@ -207,9 +207,6 @@ namespace Appccelerate.StateMachine
                     this.testee.FirePriority(Events.C);
                 });
 
-            this.testee.TransitionCompleted += (s, e) => Console.WriteLine("completed " + e.StateId + " to " + e.NewStateId);
-            this.testee.TransitionExceptionThrown += (s, e) => Console.WriteLine("Exception: " + e.Exception);
-
             this.testee.In(States.B)
                 .On(Events.C).Goto(States.C);
 
