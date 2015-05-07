@@ -1,5 +1,5 @@
-﻿//-------------------------------------------------------------------------------
-// <copyright file="ListExtensionMethods.cs" company="Appccelerate">
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Missing.cs" company="Appccelerate">
 //   Copyright (c) 2008-2015
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,21 +14,16 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // </copyright>
-//-------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 
-namespace Appccelerate.StateMachine
+namespace Appccelerate.StateMachine.Machine
 {
-    using System;
-    using System.Collections.Generic;
-
-    public static class ListExtensionMethods
+    public sealed class Missing
     {
-         public static void ForEach<T>(this IList<T> list, Action<T> action)
-         {
-             foreach (T item in list)
-             {
-                 action(item);
-             }
-         }
+        public static readonly Missing Value;
+
+        internal Missing()
+        {
+        }
     }
 }
