@@ -39,6 +39,6 @@ namespace Appccelerate.StateMachine.Machine
         /// <returns>All transitions.</returns>
         IReadOnlyList<TransitionInfo<TState, TEvent>> GetTransitions();
 
-        void CheckGuards();
+        void CheckThatThereIsOnlyOneTransitionPerEventWithoutAGuardAndThatItIsLast();
     }
 }

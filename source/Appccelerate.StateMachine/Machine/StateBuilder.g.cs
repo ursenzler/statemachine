@@ -346,7 +346,7 @@ namespace Appccelerate.StateMachine.Machine
 
         private void CheckGuards()
         {
-            this.state.Transitions.CheckGuards();
+            this.state.Transitions.CheckThatThereIsOnlyOneTransitionPerEventWithoutAGuardAndThatItIsLast();
         }
     }
 }
