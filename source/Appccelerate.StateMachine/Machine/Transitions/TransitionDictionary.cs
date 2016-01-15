@@ -20,6 +20,7 @@ namespace Appccelerate.StateMachine.Machine.Transitions
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// Manages the transitions of a state.
@@ -90,7 +91,7 @@ namespace Appccelerate.StateMachine.Machine.Transitions
         /// Gets all transitions.
         /// </summary>
         /// <returns>All transitions.</returns>
-        public IEnumerable<TransitionInfo<TState, TEvent>> GetTransitions()
+        public IReadOnlyList<TransitionInfo<TState, TEvent>> GetTransitions()
         {
             var list = new List<TransitionInfo<TState, TEvent>>();
             foreach (var eventId in this.transitions.Keys)
@@ -99,6 +100,34 @@ namespace Appccelerate.StateMachine.Machine.Transitions
             }
 
             return list;
+        }
+
+        public void CheckThatThereIsOnlyOneTransitionPerEventWithoutAGuardAndThatItIsLast()
+        {
+            if (this.transitions.Count <= 1)
+            {
+                return;
+            }
+
+            if (this.transitions.Any(e => e.Value.Count(t => t.Guard == null) > 1))
+            {
+                throw new InvalidOperationException(ExceptionMessages.OnlyOneTransitionMayHaveNoGuard);
+            }
+
+            foreach (var x in this.transitions.Values)
+            {
+                var transitionWithoutGuard = x.SingleOrDefault(t => t.Guard == null);
+
+                if (transitionWithoutGuard == null)
+                {
+                    continue;
+                }
+
+                if (x.Last() != transitionWithoutGuard)
+                {
+                    throw new InvalidOperationException(ExceptionMessages.TransitionWithoutGuardHasToBeLast);
+                }
+            }
         }
 
         /// <summary>

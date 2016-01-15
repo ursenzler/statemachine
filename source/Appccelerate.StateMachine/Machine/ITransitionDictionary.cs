@@ -37,6 +37,8 @@ namespace Appccelerate.StateMachine.Machine
         /// Gets all transitions.
         /// </summary>
         /// <returns>All transitions.</returns>
-        IEnumerable<TransitionInfo<TState, TEvent>> GetTransitions();
+        IReadOnlyList<TransitionInfo<TState, TEvent>> GetTransitions();
+
+        void CheckGuards();
     }
 }

@@ -19,9 +19,11 @@
 namespace Appccelerate.StateMachine.Machine
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     using Appccelerate.StateMachine.Machine.Events;
+    using Appccelerate.StateMachine.Machine.Transitions;
     using Appccelerate.StateMachine.Syntax;
 
     /// <summary>
@@ -344,21 +346,7 @@ namespace Appccelerate.StateMachine.Machine
 
         private void CheckGuards()
         {
-            var transitionsByEvent = this.state.Transitions.GetTransitions().GroupBy(t => t.EventId).ToList();
-            var withMoreThenOneTransitionWithoutGuard = transitionsByEvent.Where(g => g.Count(t => t.Guard == null) > 1);
-
-            if (withMoreThenOneTransitionWithoutGuard.Any())
-            {
-                throw new InvalidOperationException(ExceptionMessages.OnlyOneTransitionMayHaveNoGuard);
-            }
-
-            if ((from grouping in transitionsByEvent 
-                 let transition = grouping.SingleOrDefault(t => t.Guard == null) 
-                 where transition != null && grouping.LastOrDefault() != transition 
-                 select grouping).Any())
-            {
-                throw new InvalidOperationException(ExceptionMessages.TransitionWithoutGuardHasToBeLast);
-            }
+            this.state.Transitions.CheckGuards();
         }
     }
 }
