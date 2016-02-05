@@ -1,8 +1,8 @@
-//-------------------------------------------------------------------------------
 // <copyright file="ExtensionTest.cs" company="Appccelerate">
-//   Copyright (c) 2008-2015
+//   Copyright (c)  2008-2016
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
+//
 //   you may not use this file except in compliance with the License.
 //   You may obtain a copy of the License at
 //
@@ -14,14 +14,13 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // </copyright>
-//-------------------------------------------------------------------------------
 
 namespace Appccelerate.StateMachine
 {
     using System;
     using Appccelerate.StateMachine.Machine;
     using Appccelerate.StateMachine.Machine.Contexts;
-    
+
     using FakeItEasy;
 
     using FluentAssertions;
@@ -59,7 +58,7 @@ namespace Appccelerate.StateMachine
             States initialState = States.A;
 
             this.testee.Initialize(initialState);
-            
+
             A.CallTo(() => this.extension.InitializingStateMachine(this.testee, ref initialState))
                 .MustHaveHappened();
 
@@ -122,9 +121,9 @@ namespace Appccelerate.StateMachine
             A.CallTo(() => this.extension.FiredEvent(
                     this.testee,
                     A<ITransitionContext<States, Events>>.That.Matches(
-                        context => 
-                            context.State.Id == States.A && 
-                            context.EventId.Value == eventId && 
+                        context =>
+                            context.State.Id == States.A &&
+                            context.EventId.Value == eventId &&
                             context.EventArgument == eventArgument)))
                 .MustHaveHappened();
         }
@@ -138,7 +137,7 @@ namespace Appccelerate.StateMachine
             this.testee.In(States.A)
                 .On(Events.B).Goto(States.B)
                 .On(Events.C).Goto(States.C);
-       
+
             this.testee.Initialize(States.A);
             this.testee.EnterInitialState();
 
@@ -146,11 +145,11 @@ namespace Appccelerate.StateMachine
             var newEventArgument = new object();
             this.overrideExtension.OverriddenEvent = NewEvent;
             this.overrideExtension.OverriddenEventArgument = newEventArgument;
-            
+
             this.testee.Fire(Events.B);
 
             A.CallTo(() => this.extension.FiredEvent(
-                this.testee, 
+                this.testee,
                 A<ITransitionContext<States, Events>>.That.Matches(
                     c => c.EventId.Value == NewEvent && c.EventArgument == newEventArgument)))
                 .MustHaveHappened();
@@ -212,7 +211,7 @@ namespace Appccelerate.StateMachine
                 .MustHaveHappened();
 
             A.CallTo(() => this.extension.HandledGuardException(
-                    this.testee, 
+                    this.testee,
                     Transition(States.A),
                     Context(States.A, Events.B),
                     exception))
@@ -239,7 +238,7 @@ namespace Appccelerate.StateMachine
             this.testee.Fire(Events.B);
 
             A.CallTo(() => this.extension.HandledGuardException(
-                this.testee, 
+                this.testee,
                 A<ITransition<States, Events>>._,
                 A<ITransitionContext<States, Events>>._,
                 overriddenException))
@@ -255,7 +254,7 @@ namespace Appccelerate.StateMachine
             Exception exception = new Exception();
 
             this.testee.TransitionExceptionThrown += (s, e) => { };
-            
+
             this.testee.In(States.A).On(Events.B).Execute(() => { throw exception; });
             this.testee.Initialize(States.A);
             this.testee.EnterInitialState();
@@ -263,16 +262,16 @@ namespace Appccelerate.StateMachine
             this.testee.Fire(Events.B);
 
             A.CallTo(() => this.extension.HandlingTransitionException(
-                    this.testee, 
+                    this.testee,
                     Transition(States.A),
-                    Context(States.A, Events.B), 
+                    Context(States.A, Events.B),
                     ref exception))
                 .MustHaveHappened();
 
             A.CallTo(() => this.extension.HandledTransitionException(
-                    this.testee, 
+                    this.testee,
                     Transition(States.A),
-                    Context(States.A, Events.B), 
+                    Context(States.A, Events.B),
                     exception))
                 .MustHaveHappened();
         }
@@ -297,9 +296,9 @@ namespace Appccelerate.StateMachine
             this.testee.Fire(Events.B);
 
             A.CallTo(() => this.extension.HandledTransitionException(
-                    this.testee, 
+                    this.testee,
                     A<ITransition<States, Events>>._,
-                    A<ITransitionContext<States, Events>>._, 
+                    A<ITransitionContext<States, Events>>._,
                     overriddenException))
                 .MustHaveHappened();
         }
@@ -322,14 +321,14 @@ namespace Appccelerate.StateMachine
             this.testee.Fire(Events.B);
 
             A.CallTo(() => this.extension.HandlingEntryActionException(
-                    this.testee, 
+                    this.testee,
                     State(States.B),
                     Context(States.A, Events.B),
                     ref exception))
                 .MustHaveHappened();
 
             A.CallTo(() => this.extension.HandledEntryActionException(
-                    this.testee, 
+                    this.testee,
                     State(States.B),
                     Context(States.A, Events.B),
                     exception))
@@ -357,7 +356,7 @@ namespace Appccelerate.StateMachine
             this.testee.Fire(Events.B);
 
             A.CallTo(() => this.extension.HandledEntryActionException(
-                    this.testee, 
+                    this.testee,
                     A<IState<States, Events>>._,
                     A<ITransitionContext<States, Events>>._,
                     overriddenException))
@@ -377,21 +376,21 @@ namespace Appccelerate.StateMachine
             this.testee.In(States.A)
                 .ExecuteOnExit(() => { throw exception; })
                 .On(Events.B).Goto(States.B);
-                
+
             this.testee.Initialize(States.A);
             this.testee.EnterInitialState();
 
             this.testee.Fire(Events.B);
 
             A.CallTo(() => this.extension.HandlingExitActionException(
-                    this.testee, 
+                    this.testee,
                     State(States.A),
                     Context(States.A, Events.B),
                     ref exception))
                 .MustHaveHappened();
 
             A.CallTo(() => this.extension.HandledExitActionException(
-                    this.testee, 
+                    this.testee,
                     State(States.A),
                     Context(States.A, Events.B),
                     exception))
@@ -420,7 +419,7 @@ namespace Appccelerate.StateMachine
             this.testee.Fire(Events.B);
 
             A.CallTo(() => this.extension.HandledExitActionException(
-                    this.testee, 
+                    this.testee,
                     A<IState<States, Events>>._,
                     A<ITransitionContext<States, Events>>._,
                     overriddenException))
@@ -449,7 +448,7 @@ namespace Appccelerate.StateMachine
                 .MustHaveHappened();
 
             A.CallTo(() => this.extension.HandledEntryActionException(
-                    this.testee, 
+                    this.testee,
                     State(States.A),
                     A<TransitionContext<States, Events>>.That.Matches(context => context.State == null),
                     exception))

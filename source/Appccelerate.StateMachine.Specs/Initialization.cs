@@ -1,8 +1,8 @@
-//-------------------------------------------------------------------------------
 // <copyright file="Initialization.cs" company="Appccelerate">
-//   Copyright (c) 2008-2015
+//   Copyright (c)  2008-2016
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
+//
 //   you may not use this file except in compliance with the License.
 //   You may obtain a copy of the License at
 //
@@ -14,7 +14,6 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // </copyright>
-//-------------------------------------------------------------------------------
 
 namespace Appccelerate.StateMachine
 {
@@ -41,7 +40,7 @@ namespace Appccelerate.StateMachine
                 {
                     machine = new PassiveStateMachine<int, int>();
 
-                    machine.AddExtension(testExtension);
+                    machine.AddExtension(this.testExtension);
 
                     machine.In(TestState)
                         .ExecuteOnEntry(() => entryActionExecuted = true);
@@ -49,7 +48,7 @@ namespace Appccelerate.StateMachine
                     machine.Initialize(TestState);
                 });
 
-            "when starting the state machine"._(() => 
+            "when starting the state machine"._(() =>
                 machine.Start());
 
             "should set current state of state machine to state to which it is initialized"._(() =>
@@ -68,7 +67,7 @@ namespace Appccelerate.StateMachine
                 {
                     machine = new PassiveStateMachine<int, int>();
 
-                    machine.AddExtension(testExtension);
+                    machine.AddExtension(this.testExtension);
 
                     machine.In(TestState)
                         .ExecuteOnEntry(() => entryActionExecuted = true);
@@ -124,7 +123,7 @@ namespace Appccelerate.StateMachine
                 });
 
             "when starting the state machine"._(() =>
-                receivedException = Catch.Exception(() => 
+                receivedException = Catch.Exception(() =>
                     machine.Start()));
 
             "should throw an invalid operation exception"._(() =>
@@ -149,7 +148,7 @@ namespace Appccelerate.StateMachine
                 });
 
             "when initializing the state machine"._(() =>
-                    receivedException = Catch.Exception(() => 
+                    receivedException = Catch.Exception(() =>
                         machine.Initialize(0)));
 
             "should throw an invalid operation exception"._(() =>

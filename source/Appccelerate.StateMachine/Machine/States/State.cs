@@ -1,8 +1,8 @@
-//-------------------------------------------------------------------------------
 // <copyright file="State.cs" company="Appccelerate">
-//   Copyright (c) 2008-2015
+//   Copyright (c)  2008-2016
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
+//
 //   you may not use this file except in compliance with the License.
 //   You may obtain a copy of the License at
 //
@@ -14,7 +14,6 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // </copyright>
-//-------------------------------------------------------------------------------
 
 namespace Appccelerate.StateMachine.Machine.States
 {
@@ -30,7 +29,7 @@ namespace Appccelerate.StateMachine.Machine.States
     /// </summary>
     /// <typeparam name="TState">The type of the state id.</typeparam>
     /// <typeparam name="TEvent">The type of the event id.</typeparam>
-    public class State<TState, TEvent> 
+    public class State<TState, TEvent>
         : IState<TState, TEvent>
         where TState : IComparable
         where TEvent : IComparable
@@ -168,7 +167,7 @@ namespace Appccelerate.StateMachine.Machine.States
             {
                 return this.level;
             }
-            
+
             set
             {
                 this.level = value;
@@ -183,7 +182,7 @@ namespace Appccelerate.StateMachine.Machine.States
         /// <value>The type of the history.</value>
         public HistoryType HistoryType
         {
-            get { return this.historyType; } 
+            get { return this.historyType; }
             set { this.historyType = value; }
         }
 
@@ -191,8 +190,8 @@ namespace Appccelerate.StateMachine.Machine.States
         /// Gets the sub-states of this state.
         /// </summary>
         /// <value>The sub-states of this state.</value>
-        public ICollection<IState<TState, TEvent>> SubStates 
-        { 
+        public ICollection<IState<TState, TEvent>> SubStates
+        {
             get { return this.subStates; }
         }
 

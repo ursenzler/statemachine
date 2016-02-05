@@ -1,5 +1,5 @@
 ﻿// <copyright file="Phone.cs" company="Appccelerate">
-//   Copyright (c)  2008-2015
+//   Copyright (c)  2008-2016
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //

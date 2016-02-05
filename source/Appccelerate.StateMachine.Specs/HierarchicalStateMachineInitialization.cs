@@ -1,8 +1,8 @@
-//-------------------------------------------------------------------------------
 // <copyright file="HierarchicalStateMachineInitialization.cs" company="Appccelerate">
-//   Copyright (c) 2008-2015
+//   Copyright (c)  2008-2016
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
+//
 //   you may not use this file except in compliance with the License.
 //   You may obtain a copy of the License at
 //
@@ -14,7 +14,6 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // </copyright>
-//-------------------------------------------------------------------------------
 
 namespace Appccelerate.StateMachine
 {
@@ -37,20 +36,20 @@ namespace Appccelerate.StateMachine
         {
             "establish a hierarchical state machine"._(() =>
                 {
-                    testExtension = new CurrentStateExtension();
+                    this.testExtension = new CurrentStateExtension();
 
-                    machine = new PassiveStateMachine<int, int>();
+                    this.machine = new PassiveStateMachine<int, int>();
 
-                    machine.AddExtension(testExtension);
+                    this.machine.AddExtension(this.testExtension);
 
-                    machine.DefineHierarchyOn(SuperState)
+                    this.machine.DefineHierarchyOn(SuperState)
                         .WithHistoryType(HistoryType.None)
                         .WithInitialSubState(LeafState);
 
-                    machine.In(SuperState)
-                        .ExecuteOnEntry(() => entryActionOfSuperStateExecuted = true);
-                    machine.In(LeafState)
-                        .ExecuteOnEntry(() => entryActionOfLeafStateExecuted = true);
+                    this.machine.In(SuperState)
+                        .ExecuteOnEntry(() => this.entryActionOfSuperStateExecuted = true);
+                    this.machine.In(LeafState)
+                        .ExecuteOnEntry(() => this.entryActionOfLeafStateExecuted = true);
                 });
         }
 
@@ -59,19 +58,19 @@ namespace Appccelerate.StateMachine
         {
             "when initializing to a leaf state and starting the state machine"._(() =>
             {
-                machine.Initialize(LeafState);
-                machine.Start();
+                this.machine.Initialize(LeafState);
+                this.machine.Start();
             });
 
-            "it should set current state of state machine to state to which it is initialized"._(() => 
+            "it should set current state of state machine to state to which it is initialized"._(() =>
                 this.testExtension.CurrentState
                     .Should().Be(LeafState));
 
-            "it should execute entry action of state to which state machine is initialized"._(() => 
+            "it should execute entry action of state to which state machine is initialized"._(() =>
                 this.entryActionOfLeafStateExecuted
                     .Should().BeTrue());
 
-            "it should execute entry action of super states of the state to which state machine is initialized"._(() => 
+            "it should execute entry action of super states of the state to which state machine is initialized"._(() =>
                 this.entryActionOfSuperStateExecuted
                     .Should().BeTrue());
         }
@@ -81,21 +80,21 @@ namespace Appccelerate.StateMachine
         {
             "when initializing to a super state and starting the state machine"._(() =>
             {
-                machine.Initialize(SuperState);
-                machine.Start();
+                this.machine.Initialize(SuperState);
+                this.machine.Start();
             });
 
-            "it should_set_current_state_of_state_machine_to_initial_leaf_state_of_the_state_to_which_it_is_initialized"._(() =>
-                this.testExtension.CurrentState
+            "it should_set_current_state_of_state_machine_to_initial_leaf_state_of_the_state_to_which_it_is_initialized"._(()
+                => this.testExtension.CurrentState
                     .Should().Be(LeafState));
 
-            "it should_execute_entry_action_of_super_state_to_which_state_machine_is_initialized"._(() =>
-                this.entryActionOfSuperStateExecuted
+            "it should_execute_entry_action_of_super_state_to_which_state_machine_is_initialized"._(()
+                => this.entryActionOfSuperStateExecuted
                     .Should().BeTrue());
 
-            "it should_execute_entry_actions_of_initial_sub_states_until_a_leaf_state_is_reached"._(() =>
-                this.entryActionOfLeafStateExecuted
-                    .Should().BeTrue());           
+            "it should_execute_entry_actions_of_initial_sub_states_until_a_leaf_state_is_reached"._(()
+                => this.entryActionOfLeafStateExecuted
+                    .Should().BeTrue());
         }
     }
 }

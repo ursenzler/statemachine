@@ -1,8 +1,8 @@
-//-------------------------------------------------------------------------------
 // <copyright file="ExtensionBase.cs" company="Appccelerate">
-//   Copyright (c) 2008-2015
+//   Copyright (c)  2008-2016
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
+//
 //   you may not use this file except in compliance with the License.
 //   You may obtain a copy of the License at
 //
@@ -14,7 +14,6 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // </copyright>
-//-------------------------------------------------------------------------------
 
 namespace Appccelerate.StateMachine.Extensions
 {
@@ -224,6 +223,9 @@ namespace Appccelerate.StateMachine.Extensions
         /// <summary>
         /// Called when a transition is skipped because its guard returned false.
         /// </summary>
+        /// <param name="stateMachineInformation">The state machine</param>
+        /// <param name="transition">The skipped transition.</param>
+        /// <param name="context">The transition context</param>
         public virtual void SkippedTransition(
             IStateMachineInformation<TState, TEvent> stateMachineInformation,
             ITransition<TState, TEvent> transition,
@@ -243,10 +245,13 @@ namespace Appccelerate.StateMachine.Extensions
             ITransitionContext<TState, TEvent> transitionContext)
         {
         }
-        
+
         /// <summary>
         /// Called when a transition was executed.
         /// </summary>
+        /// <param name="stateMachineInformation">The state machine</param>
+        /// <param name="transition">The skipped transition.</param>
+        /// <param name="context">The transition context</param>
         public virtual void ExecutedTransition(
             IStateMachineInformation<TState, TEvent> stateMachineInformation,
             ITransition<TState, TEvent> transition,

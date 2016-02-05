@@ -1,8 +1,8 @@
-//-------------------------------------------------------------------------------
 // <copyright file="ExceptionHandling.cs" company="Appccelerate">
-//   Copyright (c) 2008-2015
+//   Copyright (c)  2008-2016
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
+//
 //   you may not use this file except in compliance with the License.
 //   You may obtain a copy of the License at
 //
@@ -14,7 +14,6 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // </copyright>
-//-------------------------------------------------------------------------------
 
 namespace Appccelerate.StateMachine
 {
@@ -41,7 +40,7 @@ namespace Appccelerate.StateMachine
         [Scenario]
         public void TransitionActionException()
         {
-            "establish a transition action throwing an exception"._(() => 
+            "establish a transition action throwing an exception"._(() =>
                 this.machine.In(Values.Source)
                     .On(Values.Event).Goto(Values.Destination).Execute(() =>
                         {
@@ -50,9 +49,9 @@ namespace Appccelerate.StateMachine
 
             "when executing the transition"._(() =>
                 {
-                    machine.Initialize(Values.Source);
-                    machine.Start();
-                    machine.Fire(Values.Event, Values.Parameter);
+                    this.machine.Initialize(Values.Source);
+                    this.machine.Start();
+                    this.machine.Fire(Values.Event, Values.Parameter);
                 });
 
             this.ItShouldHandleTransitionException();
@@ -140,14 +139,14 @@ namespace Appccelerate.StateMachine
 
             "when initializing the state machine"._(() =>
                 {
-                    machine.Initialize(State);
-                    machine.Start();
+                    this.machine.Initialize(State);
+                    this.machine.Start();
                 });
 
-            "should catch exception and fire transition exception event"._(() => 
+            "should catch exception and fire transition exception event"._(() =>
                 this.receivedTransitionExceptionEventArgs.Exception.Should().NotBeNull());
 
-            "should pass thrown exception to event arguments of transition exception event"._(() => 
+            "should pass thrown exception to event arguments of transition exception event"._(() =>
                 this.receivedTransitionExceptionEventArgs.Exception.Should().BeSameAs(Values.Exception));
         }
 
@@ -157,16 +156,16 @@ namespace Appccelerate.StateMachine
         {
             "establish an exception throwing state machine without a registered exception handler"._(() =>
                 {
-                    machine = new PassiveStateMachine<int, int>();
+                    this.machine = new PassiveStateMachine<int, int>();
 
-                    machine.In(Values.Source)
+                    this.machine.In(Values.Source)
                         .On(Values.Event).Execute(() =>
                             {
                                 throw Values.Exception;
                             });
 
-                    machine.Initialize(Values.Source);
-                    machine.Start();
+                    this.machine.Initialize(Values.Source);
+                    this.machine.Start();
                 });
 
             "when an exception occurs"._(() =>
@@ -194,16 +193,16 @@ namespace Appccelerate.StateMachine
             "should pass event parameter to event argument of transition exception event"._(() =>
                 this.receivedTransitionExceptionEventArgs.EventArgument.Should().Be(Values.Parameter));
         }
-    }
 
-    public static class Values
-    {
-        public const int Source = 1;
-        public const int Destination = 2;
-        public const int Event = 0;
+        private static class Values
+        {
+            public const int Source = 1;
+            public const int Destination = 2;
+            public const int Event = 0;
 
-        public const string Parameter = "oh oh";
+            public const string Parameter = "oh oh";
 
-        public static readonly Exception Exception = new Exception();
+            public static readonly Exception Exception = new Exception();
+        }
     }
 }

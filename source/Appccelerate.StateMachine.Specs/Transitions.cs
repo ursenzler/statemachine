@@ -1,8 +1,8 @@
-//-------------------------------------------------------------------------------
-// <copyright file="TransitionSpecification.cs" company="Appccelerate">
-//   Copyright (c) 2008-2015
+// <copyright file="Transitions.cs" company="Appccelerate">
+//   Copyright (c)  2008-2016
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
+//
 //   you may not use this file except in compliance with the License.
 //   You may obtain a copy of the License at
 //
@@ -14,7 +14,6 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // </copyright>
-//-------------------------------------------------------------------------------
 
 namespace Appccelerate.StateMachine
 {
@@ -24,13 +23,13 @@ namespace Appccelerate.StateMachine
 
     public class Transitions
     {
-        const int SourceState = 1;
-        const int DestinationState = 2;
-        const int Event = 2;
+        private const int SourceState = 1;
+        private const int DestinationState = 2;
+        private const int Event = 2;
 
-        const string Parameter = "parameter";
+        private const string Parameter = "parameter";
 
-        static readonly CurrentStateExtension CurrentStateExtension = new CurrentStateExtension();
+        private static readonly CurrentStateExtension CurrentStateExtension = new CurrentStateExtension();
 
         [Scenario]
         public void ExecutingTransition(

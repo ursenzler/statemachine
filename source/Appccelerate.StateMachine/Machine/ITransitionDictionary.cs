@@ -1,8 +1,8 @@
-//-------------------------------------------------------------------------------
 // <copyright file="ITransitionDictionary.cs" company="Appccelerate">
-//   Copyright (c) 2008-2015
+//   Copyright (c)  2008-2016
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
+//
 //   you may not use this file except in compliance with the License.
 //   You may obtain a copy of the License at
 //
@@ -14,7 +14,6 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // </copyright>
-//-------------------------------------------------------------------------------
 
 namespace Appccelerate.StateMachine.Machine
 {
@@ -24,7 +23,8 @@ namespace Appccelerate.StateMachine.Machine
     using Appccelerate.StateMachine.Machine.Transitions;
 
     public interface ITransitionDictionary<TState, TEvent>
-        where TState : IComparable where TEvent : IComparable
+        where TState : IComparable
+        where TEvent : IComparable
     {
         /// <summary>
         /// Adds the specified event id.

@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -77,10 +79,10 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Appccelerate.VersionTask.1.22.0\build\Appccelerate.VersionTask.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Appccelerate.VersionTask.1.22.0\build\Appccelerate.VersionTask.targets'))" />
     <Error Condition="!Exists('..\packages\Appccelerate.CheckHintPathTask.1.15.0\build\Appccelerate.CheckHintPathTask.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Appccelerate.CheckHintPathTask.1.15.0\build\Appccelerate.CheckHintPathTask.targets'))" />
-    <Error Condition="!Exists('..\packages\Appccelerate.Development.Analyzers.1.27.0\build\Appccelerate.Development.Analyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Appccelerate.Development.Analyzers.1.27.0\build\Appccelerate.Development.Analyzers.targets'))" />
+    <Error Condition="!Exists('..\packages\Appccelerate.Development.Analyzers.1.31.0\build\Appccelerate.Development.Analyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Appccelerate.Development.Analyzers.1.31.0\build\Appccelerate.Development.Analyzers.targets'))" />
   </Target>
   <Import Project="..\packages\Appccelerate.CheckHintPathTask.1.15.0\build\Appccelerate.CheckHintPathTask.targets" Condition="Exists('..\packages\Appccelerate.CheckHintPathTask.1.15.0\build\Appccelerate.CheckHintPathTask.targets')" />
-  <Import Project="..\packages\Appccelerate.Development.Analyzers.1.27.0\build\Appccelerate.Development.Analyzers.targets" Condition="Exists('..\packages\Appccelerate.Development.Analyzers.1.27.0\build\Appccelerate.Development.Analyzers.targets')" />
+  <Import Project="..\packages\Appccelerate.Development.Analyzers.1.31.0\build\Appccelerate.Development.Analyzers.targets" Condition="Exists('..\packages\Appccelerate.Development.Analyzers.1.31.0\build\Appccelerate.Development.Analyzers.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

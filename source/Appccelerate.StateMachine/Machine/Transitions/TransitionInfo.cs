@@ -1,8 +1,8 @@
-//-------------------------------------------------------------------------------
 // <copyright file="TransitionInfo.cs" company="Appccelerate">
-//   Copyright (c) 2008-2015
+//   Copyright (c)  2008-2016
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
+//
 //   you may not use this file except in compliance with the License.
 //   You may obtain a copy of the License at
 //
@@ -14,7 +14,6 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // </copyright>
-//-------------------------------------------------------------------------------
 
 namespace Appccelerate.StateMachine.Machine.Transitions
 {
@@ -27,7 +26,11 @@ namespace Appccelerate.StateMachine.Machine.Transitions
     /// <summary>
     /// Describes a transition.
     /// </summary>
-    public class TransitionInfo<TState, TEvent> where TState : IComparable where TEvent : IComparable
+    /// <typeparam name="TState">The type of the state.</typeparam>
+    /// <typeparam name="TEvent">The type of the event.</typeparam>
+    public class TransitionInfo<TState, TEvent>
+        where TState : IComparable
+        where TEvent : IComparable
     {
         public TransitionInfo(TEvent eventId, IState<TState, TEvent> source, IState<TState, TEvent> target, IGuardHolder guard, IEnumerable<IActionHolder> actions)
         {

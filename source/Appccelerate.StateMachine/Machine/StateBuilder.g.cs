@@ -1,8 +1,8 @@
-//-------------------------------------------------------------------------------
-// <copyright file="StateBuilder.cs" company="Appccelerate">
-//   Copyright (c) 2008-2015
+// <copyright file="StateBuilder.g.cs" company="Appccelerate">
+//   Copyright (c)  2008-2016
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
+//
 //   you may not use this file except in compliance with the License.
 //   You may obtain a copy of the License at
 //
@@ -14,16 +14,12 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // </copyright>
-//-------------------------------------------------------------------------------
 
 namespace Appccelerate.StateMachine.Machine
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
 
     using Appccelerate.StateMachine.Machine.Events;
-    using Appccelerate.StateMachine.Machine.Transitions;
     using Appccelerate.StateMachine.Syntax;
 
     /// <summary>
@@ -31,7 +27,7 @@ namespace Appccelerate.StateMachine.Machine
     /// </summary>
     /// <typeparam name="TState">The type of the state.</typeparam>
     /// <typeparam name="TEvent">The type of the event.</typeparam>
-    public sealed class StateBuilder<TState, TEvent> : 
+    public sealed class StateBuilder<TState, TEvent> :
         IEntryActionSyntax<TState, TEvent>,
         IGotoInIfSyntax<TState, TEvent>,
         IOtherwiseSyntax<TState, TEvent>,
@@ -74,8 +70,8 @@ namespace Appccelerate.StateMachine.Machine
         {
             Guard.AgainstNullArgument("action", action);
 
-            this.state.EntryActions.Add(this.factory.CreateActionHolder(action));    
-            
+            this.state.EntryActions.Add(this.factory.CreateActionHolder(action));
+
             return this;
         }
 
@@ -112,7 +108,7 @@ namespace Appccelerate.StateMachine.Machine
             Guard.AgainstNullArgument("action", action);
 
             this.state.ExitActions.Add(this.factory.CreateActionHolder(action));
-            
+
             return this;
         }
 
@@ -273,7 +269,7 @@ namespace Appccelerate.StateMachine.Machine
         private StateBuilder<TState, TEvent> ExecuteInternal(Action action)
         {
             this.currentTransition.Actions.Add(this.factory.CreateTransitionActionHolder(action));
-            
+
             this.CheckGuards();
 
             return this;
@@ -282,7 +278,7 @@ namespace Appccelerate.StateMachine.Machine
         private StateBuilder<TState, TEvent> ExecuteInternal<T>(Action<T> action)
         {
             this.currentTransition.Actions.Add(this.factory.CreateTransitionActionHolder(action));
-            
+
             this.CheckGuards();
 
             return this;

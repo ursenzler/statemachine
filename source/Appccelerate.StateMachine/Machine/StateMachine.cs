@@ -1,8 +1,8 @@
-//-------------------------------------------------------------------------------
 // <copyright file="StateMachine.cs" company="Appccelerate">
-//   Copyright (c) 2008-2015
+//   Copyright (c)  2008-2016
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
+//
 //   you may not use this file except in compliance with the License.
 //   You may obtain a copy of the License at
 //
@@ -14,14 +14,13 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // </copyright>
-//-------------------------------------------------------------------------------
 
 namespace Appccelerate.StateMachine.Machine
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    
+
     using Appccelerate.StateMachine.Machine.Events;
     using Appccelerate.StateMachine.Persistence;
     using Appccelerate.StateMachine.Syntax;
@@ -31,8 +30,8 @@ namespace Appccelerate.StateMachine.Machine
     /// </summary>
     /// <typeparam name="TState">The type of the state.</typeparam>
     /// <typeparam name="TEvent">The type of the event.</typeparam>
-    public class StateMachine<TState, TEvent> : 
-        INotifier<TState, TEvent>, 
+    public class StateMachine<TState, TEvent> :
+        INotifier<TState, TEvent>,
         IStateMachineInformation<TState, TEvent>,
         IExtensionHost<TState, TEvent>
         where TState : IComparable
@@ -294,8 +293,8 @@ namespace Appccelerate.StateMachine.Machine
         {
             Guard.AgainstNullArgument("stateMachineSaver", stateMachineSaver);
 
-            stateMachineSaver.SaveCurrentState(this.currentState != null ? 
-                new Initializable<TState> { Value = this.currentState.Id } : 
+            stateMachineSaver.SaveCurrentState(this.currentState != null ?
+                new Initializable<TState> { Value = this.currentState.Id } :
                 new Initializable<TState>());
 
             IEnumerable<IState<TState, TEvent>> superStatesWithLastActiveState = this.states.GetStates()
@@ -320,7 +319,8 @@ namespace Appccelerate.StateMachine.Machine
         }
 
         // ReSharper disable once UnusedParameter.Local
-        private static void RethrowExceptionIfNoHandlerRegistered<T>(Exception exception, EventHandler<T> exceptionHandler) where T : EventArgs
+        private static void RethrowExceptionIfNoHandlerRegistered<T>(Exception exception, EventHandler<T> exceptionHandler)
+            where T : EventArgs
         {
             if (exceptionHandler == null)
             {
@@ -390,7 +390,8 @@ namespace Appccelerate.StateMachine.Machine
             this.CurrentState = initializer.EnterInitialState();
         }
 
-        private void RaiseEvent<T>(EventHandler<T> eventHandler, T arguments, ITransitionContext<TState, TEvent> context, bool raiseEventOnException) where T : EventArgs
+        private void RaiseEvent<T>(EventHandler<T> eventHandler, T arguments, ITransitionContext<TState, TEvent> context, bool raiseEventOnException)
+            where T : EventArgs
         {
             try
             {

@@ -1,8 +1,8 @@
-//-------------------------------------------------------------------------------
 // <copyright file="StartStop.cs" company="Appccelerate">
-//   Copyright (c) 2008-2015
+//   Copyright (c)  2008-2016
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
+//
 //   you may not use this file except in compliance with the License.
 //   You may obtain a copy of the License at
 //
@@ -14,7 +14,6 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // </copyright>
-//-------------------------------------------------------------------------------
 
 namespace Appccelerate.StateMachine
 {
@@ -38,7 +37,7 @@ namespace Appccelerate.StateMachine
                 this.machine = new PassiveStateMachine<int, int>();
 
                 this.extension = new RecordEventsExtension();
-                this.machine.AddExtension(extension);
+                this.machine.AddExtension(this.extension);
 
                 this.machine.In(A)
                     .On(Event).Goto(B);
@@ -73,13 +72,13 @@ namespace Appccelerate.StateMachine
             "establish started state machine"._(() =>
                 this.machine.Start());
 
-            "when stopping a state machine"._(() => 
+            "when stopping a state machine"._(() =>
                 this.machine.Stop());
 
             "when firing events onto the state machine"._(() =>
                  this.machine.Fire(Event));
 
-            "it should queue events"._(() => 
+            "it should queue events"._(() =>
                 this.extension.RecordedQueuedEvents.Should().HaveCount(1));
         }
     }

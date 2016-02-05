@@ -1,8 +1,8 @@
-//-------------------------------------------------------------------------------
 // <copyright file="TransitionCompletedEventArgs.cs" company="Appccelerate">
-//   Copyright (c) 2008-2015
+//   Copyright (c)  2008-2016
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
+//
 //   you may not use this file except in compliance with the License.
 //   You may obtain a copy of the License at
 //
@@ -14,7 +14,6 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // </copyright>
-//-------------------------------------------------------------------------------
 
 namespace Appccelerate.StateMachine.Machine.Events
 {
@@ -31,27 +30,20 @@ namespace Appccelerate.StateMachine.Machine.Events
         where TEvent : IComparable
     {
         /// <summary>
-        /// The new state the state machine is in after the transition.
-        /// </summary>
-        private readonly TState newStateId;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="TransitionCompletedEventArgs&lt;TState, TEvent&gt;"/> class.
         /// </summary>
         /// <param name="newStateId">The new state id.</param>
         /// <param name="context">The context.</param>
-        public TransitionCompletedEventArgs(TState newStateId, ITransitionContext<TState, TEvent> context) : base(context)
+        public TransitionCompletedEventArgs(TState newStateId, ITransitionContext<TState, TEvent> context)
+            : base(context)
         {
-            this.newStateId = newStateId;
+            this.NewStateId = newStateId;
         }
 
         /// <summary>
         /// Gets the new state id the state machine is in after the transition.
         /// </summary>
         /// <value>The new state id the state machine is in after the transition.</value>
-        public TState NewStateId
-        {
-            get { return this.newStateId; }
-        }
+        public TState NewStateId { get; }
     }
 }
