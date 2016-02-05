@@ -25,8 +25,6 @@ namespace Appccelerate.StateMachine.Machine
         IHierarchySyntax<TState>,
         IInitialSubStateSyntax<TState>,
         ISubStateSyntax<TState>
-        where TState : IComparable
-        where TEvent : IComparable
     {
         private readonly IStateDictionary<TState, TEvent> states;
 

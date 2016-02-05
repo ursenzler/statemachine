@@ -27,8 +27,6 @@ namespace Appccelerate.StateMachine.Machine.Events
     /// <typeparam name="TEvent">The type of the event.</typeparam>
     public class TransitionEventArgs<TState, TEvent>
         : ContextEventArgs<TState, TEvent>
-        where TState : IComparable
-        where TEvent : IComparable
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransitionEventArgs&lt;TState, TEvent&gt;"/> class.

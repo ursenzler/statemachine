@@ -21,8 +21,6 @@ namespace Appccelerate.StateMachine.Machine.Transitions
 
     public class TransitionResult<TState, TEvent>
         : ITransitionResult<TState, TEvent>
-        where TState : IComparable
-        where TEvent : IComparable
     {
         public static readonly ITransitionResult<TState, TEvent> NotFired = new TransitionResult<TState, TEvent>(false, null);
 

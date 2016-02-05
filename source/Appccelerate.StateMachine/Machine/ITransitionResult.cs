@@ -25,8 +25,6 @@ namespace Appccelerate.StateMachine.Machine
     /// <typeparam name="TState">The type of the state.</typeparam>
     /// <typeparam name="TEvent">The type of the event.</typeparam>
     public interface ITransitionResult<TState, TEvent>
-        where TState : IComparable
-        where TEvent : IComparable
     {
         /// <summary>
         /// Gets a value indicating whether this <see cref="ITransitionResult{TState, TEvent}"/> is fired.

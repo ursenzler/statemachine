@@ -34,8 +34,6 @@ namespace Appccelerate.StateMachine.Machine.Transitions
         /// <param name="state">The state.</param>
         /// <returns>error message</returns>
         public static string TransitionDoesAlreadyExist<TState, TEvent>(ITransition<TState, TEvent> transition, IState<TState, TEvent> state)
-            where TState : IComparable
-            where TEvent : IComparable
         {
             Guard.AgainstNullArgument("transition", transition);
 

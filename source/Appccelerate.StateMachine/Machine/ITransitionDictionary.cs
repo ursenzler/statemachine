@@ -23,8 +23,6 @@ namespace Appccelerate.StateMachine.Machine
     using Appccelerate.StateMachine.Machine.Transitions;
 
     public interface ITransitionDictionary<TState, TEvent>
-        where TState : IComparable
-        where TEvent : IComparable
     {
         /// <summary>
         /// Adds the specified event id.

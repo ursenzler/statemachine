@@ -34,9 +34,7 @@ namespace Appccelerate.StateMachine.Machine
     // ReSharper disable ClassWithVirtualMembersNeverInherited.Global
     public class StandardFactory<TState, TEvent> : IFactory<TState, TEvent>
 
-        // ReSharper restore ClassWithVirtualMembersNeverInherited.Global
-        where TState : IComparable
-        where TEvent : IComparable
+    // ReSharper restore ClassWithVirtualMembersNeverInherited.Global
     {
         private readonly IStateMachineInformation<TState, TEvent> stateMachineInformation;
         private readonly IExtensionHost<TState, TEvent> extensionHost;

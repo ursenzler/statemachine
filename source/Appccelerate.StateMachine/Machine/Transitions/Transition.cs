@@ -27,8 +27,6 @@ namespace Appccelerate.StateMachine.Machine.Transitions
 
     public class Transition<TState, TEvent>
         : ITransition<TState, TEvent>
-        where TState : IComparable
-        where TEvent : IComparable
     {
         private readonly List<IActionHolder> actions;
         private readonly IExtensionHost<TState, TEvent> extensionHost;

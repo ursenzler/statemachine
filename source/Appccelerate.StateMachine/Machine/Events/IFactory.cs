@@ -23,8 +23,6 @@ namespace Appccelerate.StateMachine.Machine.Events
     using Appccelerate.StateMachine.Machine.GuardHolders;
 
     public interface IFactory<TState, TEvent>
-        where TState : IComparable
-        where TEvent : IComparable
     {
         IState<TState, TEvent> CreateState(TState id);
 

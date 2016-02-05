@@ -73,8 +73,6 @@ namespace Appccelerate.StateMachine.Machine
         }
 
         public static string CannotSetStateAsASuperStateBecauseASuperStateIsAlreadySet<TState, TEvent>(TState newSuperStateId, IState<TState, TEvent> stateAlreadyHavingASuperState)
-            where TState : IComparable
-            where TEvent : IComparable
         {
             Guard.AgainstNullArgument("stateAlreadyHavingASuperState", stateAlreadyHavingASuperState);
 
@@ -95,8 +93,6 @@ namespace Appccelerate.StateMachine.Machine
         /// <param name="state">The state.</param>
         /// <returns>error message</returns>
         public static string TransitionDoesAlreadyExist<TState, TEvent>(ITransition<TState, TEvent> transition, IState<TState, TEvent> state)
-            where TState : IComparable
-            where TEvent : IComparable
         {
             Guard.AgainstNullArgument("transition", transition);
 

@@ -35,8 +35,6 @@ namespace Appccelerate.StateMachine.Machine
         IGotoSyntax<TState, TEvent>,
         IIfSyntax<TState, TEvent>,
         IOnSyntax<TState, TEvent>
-        where TState : IComparable
-        where TEvent : IComparable
     {
         private readonly IState<TState, TEvent> state;
 

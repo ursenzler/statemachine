@@ -129,7 +129,6 @@ namespace Appccelerate.StateMachine
         }
 
         public class StateMachineSaver<TState> : IStateMachineSaver<TState>
-            where TState : IComparable
         {
             public Initializable<TState> CurrentStateId { get; private set; }
 
@@ -147,7 +146,6 @@ namespace Appccelerate.StateMachine
         }
 
         public class StateMachineLoader<TState> : IStateMachineLoader<TState>
-            where TState : IComparable
         {
             private Initializable<TState> currentState;
             private IDictionary<TState, TState> historyStates;

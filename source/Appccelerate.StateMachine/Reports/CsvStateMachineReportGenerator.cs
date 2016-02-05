@@ -30,8 +30,6 @@ namespace Appccelerate.StateMachine.Reports
     /// <typeparam name="TState">The type of the state.</typeparam>
     /// <typeparam name="TEvent">The type of the event.</typeparam>
     public class CsvStateMachineReportGenerator<TState, TEvent> : IStateMachineReport<TState, TEvent>
-        where TState : IComparable
-        where TEvent : IComparable
     {
         private readonly Stream statesStream;
 

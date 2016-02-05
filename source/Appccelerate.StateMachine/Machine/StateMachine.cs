@@ -34,8 +34,6 @@ namespace Appccelerate.StateMachine.Machine
         INotifier<TState, TEvent>,
         IStateMachineInformation<TState, TEvent>,
         IExtensionHost<TState, TEvent>
-        where TState : IComparable
-        where TEvent : IComparable
     {
         private readonly IStateDictionary<TState, TEvent> states;
         private readonly IFactory<TState, TEvent> factory;

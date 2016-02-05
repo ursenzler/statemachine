@@ -31,8 +31,6 @@ namespace Appccelerate.StateMachine.Machine.States
     /// <typeparam name="TEvent">The type of the event id.</typeparam>
     public class State<TState, TEvent>
         : IState<TState, TEvent>
-        where TState : IComparable
-        where TEvent : IComparable
     {
         /// <summary>
         /// Collection of the sub-states of this state.

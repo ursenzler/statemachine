@@ -23,7 +23,6 @@ namespace Appccelerate.StateMachine.Persistence
     using Appccelerate.StateMachine.Machine;
 
     public interface IStateMachineSaver<TState>
-        where TState : IComparable
     {
         /// <summary>
         /// Saves the current state of the state machine.

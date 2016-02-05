@@ -23,8 +23,6 @@ namespace Appccelerate.StateMachine
     using FakeItEasy;
 
     public static class Builder<TState, TEvent>
-            where TState : IComparable
-            where TEvent : IComparable
     {
         public static GuardBuilder CreateGuardHolder()
         {

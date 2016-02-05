@@ -28,8 +28,6 @@ namespace Appccelerate.StateMachine.Machine
     /// <typeparam name="TState">The type of the state.</typeparam>
     /// <typeparam name="TEvent">The type of the event.</typeparam>
     public class StateDictionary<TState, TEvent> : IStateDictionary<TState, TEvent>
-        where TState : IComparable
-        where TEvent : IComparable
     {
         /// <summary>
         /// Maps ids to states.

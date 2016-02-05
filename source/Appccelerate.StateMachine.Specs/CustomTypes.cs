@@ -21,8 +21,6 @@ namespace Appccelerate.StateMachine
     using FluentAssertions;
     using Xbehave;
 
-    //// see http://www.appccelerate.com/statemachinecustomtypes.html for an explanation why states and events have to be IComparable
-    //// and not IEquatable.
     public class CustomTypes
     {
         [Scenario]
@@ -52,7 +50,7 @@ namespace Appccelerate.StateMachine
                 arrivedInStateB.Should().BeTrue("state B should be current state"));
         }
 
-        public class MyState : IComparable
+        public class MyState
         {
             public MyState(string name)
             {
@@ -97,7 +95,7 @@ namespace Appccelerate.StateMachine
             }
         }
 
-        public class MyEvent : IComparable
+        public class MyEvent
         {
             public MyEvent(int identifier)
             {
