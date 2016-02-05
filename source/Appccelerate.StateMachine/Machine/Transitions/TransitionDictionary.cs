@@ -101,7 +101,7 @@ namespace Appccelerate.StateMachine.Machine.Transitions
 
         public void CheckThatThereIsOnlyOneTransitionPerEventWithoutAGuardAndThatItIsLast()
         {
-            if (this.transitions.All(t => t.Value.Count() <= 1))
+            if (this.transitions.All(t => t.Value.Count <= 1))
             {
                 return;
             }

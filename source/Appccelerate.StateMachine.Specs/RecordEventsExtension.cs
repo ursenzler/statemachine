@@ -29,9 +29,9 @@ namespace Appccelerate.StateMachine
                 this.RecordedQueuedEvents = new List<int>();
             }
 
-            public IList<int> RecordedFiredEvents { get; private set; }
+            public IList<int> RecordedFiredEvents { get; }
 
-            public IList<int> RecordedQueuedEvents { get; private set; }
+            public IList<int> RecordedQueuedEvents { get; }
 
             public override void FiredEvent(IStateMachineInformation<int, int> stateMachine, ITransitionContext<int, int> context)
             {

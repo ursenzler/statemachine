@@ -117,10 +117,7 @@ namespace Appccelerate.StateMachine
         /// Gets a value indicating whether this instance is running. The state machine is running if if was started and not yet stopped.
         /// </summary>
         /// <value><c>true</c> if this instance is running; otherwise, <c>false</c>.</value>
-        public bool IsRunning
-        {
-            get { return this.worker != null && !this.worker.IsCompleted; }
-        }
+        public bool IsRunning => this.worker != null && !this.worker.IsCompleted;
 
         /// <summary>
         /// Define the behavior of a state.

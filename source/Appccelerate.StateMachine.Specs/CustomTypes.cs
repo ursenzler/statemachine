@@ -57,7 +57,7 @@ namespace Appccelerate.StateMachine
                 this.Name = name;
             }
 
-            private string Name { get; set; }
+            private string Name { get; }
 
             public override bool Equals(object obj)
             {
@@ -81,7 +81,7 @@ namespace Appccelerate.StateMachine
 
             public override int GetHashCode()
             {
-                return this.Name != null ? this.Name.GetHashCode() : 0;
+                return this.Name?.GetHashCode() ?? 0;
             }
 
             public int CompareTo(object obj)
@@ -102,7 +102,7 @@ namespace Appccelerate.StateMachine
                 this.Identifier = identifier;
             }
 
-            private int Identifier { get; set; }
+            private int Identifier { get; }
 
             public override bool Equals(object obj)
             {

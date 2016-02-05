@@ -27,42 +27,30 @@ namespace Appccelerate.StateMachine.Machine.Contexts
     /// </summary>
     /// <typeparam name="TState">The type of the state.</typeparam>
     /// <typeparam name="TEvent">The type of the event.</typeparam>
-    [DebuggerDisplay("State = {state} Event = {eventId} EventArguments = {eventArguments}")]
+    [DebuggerDisplay("State = {State} Event = {EventId} EventArguments = {eventArguments}")]
     public class TransitionContext<TState, TEvent> : ITransitionContext<TState, TEvent>
     {
-        private readonly IState<TState, TEvent> state;
-        private readonly Missable<TEvent> eventId;
-        private readonly object eventArgument;
         private readonly List<Record> records;
 
         public TransitionContext(IState<TState, TEvent> state, Missable<TEvent> eventId, object eventArgument, INotifier<TState, TEvent> notifier)
         {
-            this.state = state;
-            this.eventId = eventId;
-            this.eventArgument = eventArgument;
+            this.State = state;
+            this.EventId = eventId;
+            this.EventArgument = eventArgument;
             this.Notifier = notifier;
 
             this.records = new List<Record>();
         }
 
-        public IState<TState, TEvent> State
-        {
-            get { return this.state; }
-        }
+        public IState<TState, TEvent> State { get; }
 
-        public Missable<TEvent> EventId
-        {
-            get { return this.eventId; }
-        }
+        public Missable<TEvent> EventId { get; }
 
-        public object EventArgument
-        {
-            get { return this.eventArgument; }
-        }
+        public object EventArgument { get; }
 
         private INotifier<TState, TEvent> Notifier
         {
-            get; set;
+            get;
         }
 
         public void OnExceptionThrown(Exception exception)
@@ -97,9 +85,9 @@ namespace Appccelerate.StateMachine.Machine.Contexts
                 this.RecordType = recordType;
             }
 
-            private TState StateId { get; set; }
+            private TState StateId { get; }
 
-            private RecordType RecordType { get; set; }
+            private RecordType RecordType { get; }
 
             public override string ToString()
             {

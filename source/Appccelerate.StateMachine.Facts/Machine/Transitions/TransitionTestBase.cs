@@ -34,9 +34,9 @@ namespace Appccelerate.StateMachine.Machine.Transitions
         protected readonly Transition<States, Events> Testee;
 #pragma warning restore SA1401 // Fields must be private
 
-        protected TestableExtensionHost ExtensionHost { get; private set; }
+        protected TestableExtensionHost ExtensionHost { get; }
 
-        protected IStateMachineInformation<States, Events> StateMachineInformation { get; private set; }
+        protected IStateMachineInformation<States, Events> StateMachineInformation { get; }
 
         protected IState<States, Events> Source { get; set; }
 

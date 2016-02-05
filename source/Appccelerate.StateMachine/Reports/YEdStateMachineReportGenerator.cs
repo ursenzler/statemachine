@@ -118,14 +118,14 @@ namespace Appccelerate.StateMachine.Reports
         private static string CreateExitActionsDescription(IState<TState, TEvent> state)
         {
             return state.ExitActions.Any()
-                       ? (state.ExitActions.Aggregate(Environment.NewLine + "(", (aggregate, action) => (aggregate.Length > 3 ? aggregate + ", " : aggregate) + action.Describe()) + ")")
+                       ? state.ExitActions.Aggregate(Environment.NewLine + "(", (aggregate, action) => (aggregate.Length > 3 ? aggregate + ", " : aggregate) + action.Describe()) + ")"
                        : string.Empty;
         }
 
         private static string CreateEntryActionDescription(IState<TState, TEvent> state)
         {
             return state.EntryActions.Any()
-                       ? (state.EntryActions.Aggregate("(", (aggregate, action) => (aggregate.Length > 1 ? aggregate + ", " : aggregate) + action.Describe()) + ")" + Environment.NewLine)
+                       ? state.EntryActions.Aggregate("(", (aggregate, action) => (aggregate.Length > 1 ? aggregate + ", " : aggregate) + action.Describe()) + ")" + Environment.NewLine
                        : string.Empty;
         }
 
@@ -136,7 +136,7 @@ namespace Appccelerate.StateMachine.Reports
 
         private static string CreateActionsDescription(TransitionInfo<TState, TEvent> transition)
         {
-            return transition.Actions.Any() ? (transition.Actions.Aggregate("(", (aggregate, action) => (aggregate.Length > 1 ? aggregate + ", " : aggregate) + action.Describe()) + ")") : string.Empty;
+            return transition.Actions.Any() ? transition.Actions.Aggregate("(", (aggregate, action) => (aggregate.Length > 1 ? aggregate + ", " : aggregate) + action.Describe()) + ")" : string.Empty;
         }
 
         private void AddEdges(XElement graph, IEnumerable<IState<TState, TEvent>> states)

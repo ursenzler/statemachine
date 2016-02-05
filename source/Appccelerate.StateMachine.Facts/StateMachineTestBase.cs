@@ -59,13 +59,13 @@ namespace Appccelerate.StateMachine
             this.testee.TransitionDeclined += (sender, e) => this.TransitionDeclinedMessages.Add(e);
         }
 
-        private List<EventArgs> Exceptions { get; set; }
+        private List<EventArgs> Exceptions { get; }
 
-        private List<TransitionEventArgs<States, Events>> TransitionBeginMessages { get; set; }
+        private List<TransitionEventArgs<States, Events>> TransitionBeginMessages { get; }
 
-        private List<TransitionCompletedEventArgs<States, Events>> TransitionCompletedMessages { get; set; }
+        private List<TransitionCompletedEventArgs<States, Events>> TransitionCompletedMessages { get; }
 
-        private List<TransitionEventArgs<States, Events>> TransitionDeclinedMessages { get; set; }
+        private List<TransitionEventArgs<States, Events>> TransitionDeclinedMessages { get; }
 
         public void Dispose()
         {

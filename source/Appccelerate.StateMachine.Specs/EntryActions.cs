@@ -161,10 +161,7 @@ namespace Appccelerate.StateMachine
 
             "it should handle all exceptions of all throwing entry actions by firing the TransitionExceptionThrown event"._(() =>
                 receivedException
-                    .Should().BeEquivalentTo(new object[]
-                                                 {
-                                                     exception2, exception3
-                                                 }));
+                    .Should().BeEquivalentTo(exception2, exception3));
         }
 
         [Scenario]

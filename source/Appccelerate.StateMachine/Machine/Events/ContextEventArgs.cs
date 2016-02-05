@@ -27,16 +27,11 @@ namespace Appccelerate.StateMachine.Machine.Events
     public class ContextEventArgs<TState, TEvent>
         : EventArgs
     {
-        private readonly ITransitionContext<TState, TEvent> context;
-
         protected ContextEventArgs(ITransitionContext<TState, TEvent> context)
         {
-            this.context = context;
+            this.Context = context;
         }
 
-        protected ITransitionContext<TState, TEvent> Context
-        {
-            get { return this.context; }
-        }
+        protected ITransitionContext<TState, TEvent> Context { get; }
     }
 }

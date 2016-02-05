@@ -38,7 +38,7 @@ namespace Appccelerate.StateMachine.Machine
         private readonly IStateDictionary<TState, TEvent> states;
         private readonly IFactory<TState, TEvent> factory;
         private readonly Initializable<TState> initialStateId;
-        private readonly string name;
+
         private readonly List<IExtension<TState, TEvent>> extensions;
         private IState<TState, TEvent> currentState;
 
@@ -66,7 +66,7 @@ namespace Appccelerate.StateMachine.Machine
         /// <param name="factory">The factory used to create internal instances.</param>
         public StateMachine(string name, IFactory<TState, TEvent> factory)
         {
-            this.name = name;
+            this.Name = name;
             this.factory = factory ?? new StandardFactory<TState, TEvent>(this, this);
             this.states = new StateDictionary<TState, TEvent>(this.factory);
             this.extensions = new List<IExtension<TState, TEvent>>();
@@ -98,19 +98,13 @@ namespace Appccelerate.StateMachine.Machine
         /// Gets the name of this instance.
         /// </summary>
         /// <value>The name of this instance.</value>
-        public string Name
-        {
-            get { return this.name; }
-        }
+        public string Name { get; }
 
         /// <summary>
         /// Gets the id of the current state.
         /// </summary>
         /// <value>The id of the current state.</value>
-        public TState CurrentStateId
-        {
-            get { return this.CurrentState.Id; }
-        }
+        public TState CurrentStateId => this.CurrentState.Id;
 
         /// <summary>
         /// Gets or sets the state of the current.
@@ -273,7 +267,7 @@ namespace Appccelerate.StateMachine.Machine
         /// </returns>
         public override string ToString()
         {
-            return this.name ?? base.ToString();
+            return this.Name ?? base.ToString();
         }
 
         /// <summary>

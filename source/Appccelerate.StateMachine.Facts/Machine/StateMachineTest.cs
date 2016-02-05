@@ -613,10 +613,7 @@ namespace Appccelerate.StateMachine.Machine
             /// Gets the message.
             /// </summary>
             /// <value>The message.</value>
-            public override string Message
-            {
-                get { return "State " + this.State + " not entered."; }
-            }
+            public override string Message => $"State {this.State} not entered.";
         }
 
         /// <summary>
@@ -628,10 +625,7 @@ namespace Appccelerate.StateMachine.Machine
             /// Gets the message.
             /// </summary>
             /// <value>The message.</value>
-            public override string Message
-            {
-                get { return "State " + this.State + " not exited."; }
-            }
+            public override string Message => $"State {this.State} not exited.";
         }
     }
 }
