@@ -60,7 +60,9 @@ namespace Appccelerate.StateMachine.Machine.GuardHolders
         /// <returns>Description of the guard.</returns>
         public string Describe()
         {
-            return this.guard.GetMethodInfo().GetCustomAttributes(typeof(CompilerGeneratedAttribute), false).Any() ? "anonymous" : this.guard.GetMethodInfo().Name;
+            var name = this.guard.GetMethodInfo().Name;
+
+            return name.StartsWith("<") ? "anonymous" : name;
         }
     }
 }

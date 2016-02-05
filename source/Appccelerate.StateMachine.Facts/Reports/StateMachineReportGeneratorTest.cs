@@ -66,7 +66,7 @@ namespace Appccelerate.StateMachine.Reports
                 .On(Events.A)
                 .On(Events.B).Goto(States.B)
                 .On(Events.C).If(() => true).Goto(States.C1)
-                .On(Events.C).If(() => false).Goto(States.C2);
+                .On(Events.C).If((string s) => false).Goto(States.C2);
 
             this.machine.In(States.B)
                 .On(Events.A).Goto(States.A).Execute(Action);
